@@ -1,4 +1,3 @@
-
 /* Login Class
  */
 function Login() {
@@ -47,6 +46,19 @@ Login.prototype.logout = function(sessionId) {
         * TODO: Remove the given sessionId from the sessionMap
         */
 };
+/*
+* Refresh the session
+*/
+Login.prototype.refresh = function(sessionId) {
+                console.log('Refreshing the session for::' + sessionId);
 
+                if(sessionId in this.sessionMap){
+					var name = this.sessionMap[sessionId].name;
+                    var email = this.sessionMap[sessionId].email;
+                    var sessionId2 = new Date().getTime();
+                    this.sessionMap[sessionId2] = { name: name, email: email }
+        			return sessionId2;
+        		}
+};
 // Export the Login class
 module.exports = new Login();
